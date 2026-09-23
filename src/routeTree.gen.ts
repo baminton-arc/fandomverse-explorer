@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FavouritesRouteImport } from './routes/favourites'
+import { Route as CategorySlugIndexRouteImport } from './routes/category.$slug.index'
+import { Route as CategorySlugItemIdRouteImport } from './routes/category.$slug.$itemId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavouritesRoute = FavouritesRouteImport.update({
+  id: '/favourites',
+  path: '/favourites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugIndexRoute = CategorySlugIndexRouteImport.update({
+  id: '/category/$slug/',
+  path: '/category/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugItemIdRoute = CategorySlugItemIdRouteImport.update({
+  id: '/category/$slug/$itemId',
+  path: '/category/$slug/$itemId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/favourites': typeof FavouritesRoute
+  '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
+  '/category/$slug/': typeof CategorySlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/favourites': typeof FavouritesRoute
+  '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
+  '/category/$slug': typeof CategorySlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/favourites': typeof FavouritesRoute
+  '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
+  '/category/$slug/': typeof CategorySlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/favourites'
+    | '/category/$slug/$itemId'
+    | '/category/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/favourites'
+    | '/category/$slug/$itemId'
+    | '/category/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/favourites'
+    | '/category/$slug/$itemId'
+    | '/category/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  FavouritesRoute: typeof FavouritesRoute
+  CategorySlugItemIdRoute: typeof CategorySlugItemIdRoute
+  CategorySlugIndexRoute: typeof CategorySlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favourites': {
+      id: '/favourites'
+      path: '/favourites'
+      fullPath: '/favourites'
+      preLoaderRoute: typeof FavouritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug/': {
+      id: '/category/$slug/'
+      path: '/category/$slug'
+      fullPath: '/category/$slug/'
+      preLoaderRoute: typeof CategorySlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug/$itemId': {
+      id: '/category/$slug/$itemId'
+      path: '/category/$slug/$itemId'
+      fullPath: '/category/$slug/$itemId'
+      preLoaderRoute: typeof CategorySlugItemIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  FavouritesRoute: FavouritesRoute,
+  CategorySlugItemIdRoute: CategorySlugItemIdRoute,
+  CategorySlugIndexRoute: CategorySlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
