@@ -23,7 +23,7 @@ const mk = (
     rating,
     tags,
     synopsis,
-    trending,
+    ...(trending ? { trending: true as const } : {}),
   }));
 
 export const items: FandomItem[] = [

@@ -26,11 +26,15 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [form, setForm] = React.useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [errors, setErrors] = React.useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: { name?: string; email?: string; message?: string } = {};
     if (!form.name.trim()) next.name = "Please tell us your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = "That email doesn't look right.";
     if (form.message.trim().length < 10) next.message = "A little more detail, please (10+ characters).";
