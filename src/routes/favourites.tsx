@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { HeartCrack, Trash2 } from "lucide-react";
-import { categories, categoryBySlug } from "@/data/categories";
+import { categories } from "@/data/categories";
 import { itemById } from "@/data/items";
 import { CoverArt } from "@/components/ItemCard";
 import { useFavourites } from "@/lib/fandom-store";
@@ -110,7 +110,6 @@ function FavouritesPage() {
           </section>
         ))}
       </div>
-      <div className="sr-only">{categoryBySlug("anime")?.name}</div>
     </div>
   );
 }
