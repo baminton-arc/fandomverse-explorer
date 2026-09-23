@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FavouritesRouteImport } from './routes/favourites'
 import { Route as CategorySlugIndexRouteImport } from './routes/category.$slug.index'
 import { Route as CategorySlugItemIdRouteImport } from './routes/category.$slug.$itemId'
@@ -17,6 +19,16 @@ import { Route as CategorySlugItemIdRouteImport } from './routes/category.$slug.
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FavouritesRoute = FavouritesRouteImport.update({
@@ -37,12 +49,16 @@ const CategorySlugItemIdRoute = CategorySlugItemIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/favourites': typeof FavouritesRoute
   '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
   '/category/$slug/': typeof CategorySlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/favourites': typeof FavouritesRoute
   '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
   '/category/$slug': typeof CategorySlugIndexRoute
@@ -50,6 +66,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/favourites': typeof FavouritesRoute
   '/category/$slug/$itemId': typeof CategorySlugItemIdRoute
   '/category/$slug/': typeof CategorySlugIndexRoute
@@ -57,12 +75,25 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/favourites' | '/category/$slug/$itemId' | '/category/$slug/'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/favourites'
+    | '/category/$slug/$itemId'
+    | '/category/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favourites' | '/category/$slug/$itemId' | '/category/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/favourites'
+    | '/category/$slug/$itemId'
+    | '/category/$slug'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/contact'
     | '/favourites'
     | '/category/$slug/$itemId'
     | '/category/$slug/'
@@ -70,6 +101,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   FavouritesRoute: typeof FavouritesRoute
   CategorySlugItemIdRoute: typeof CategorySlugItemIdRoute
   CategorySlugIndexRoute: typeof CategorySlugIndexRoute
@@ -82,6 +115,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/favourites': {
@@ -110,6 +157,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   FavouritesRoute: FavouritesRoute,
   CategorySlugItemIdRoute: CategorySlugItemIdRoute,
   CategorySlugIndexRoute: CategorySlugIndexRoute,
