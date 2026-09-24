@@ -5,6 +5,7 @@ import type { FandomItem } from "@/data/items";
 import { categoryBySlug } from "@/data/categories";
 import { favKey, useFavourites } from "@/lib/fandom-store";
 import { cn } from "@/lib/utils";
+import { itemImages } from "@/data/images";
 
 export function CoverArt({
   item,
@@ -46,7 +47,6 @@ export function CoverArt({
       >
         {initials}
       </span>
-    </div>
       {itemImages[item.id] && (
         <img
           src={itemImages[item.id]}
