@@ -5,6 +5,7 @@ import type { FandomItem } from "@/data/items";
 import { categoryBySlug } from "@/data/categories";
 import { favKey, useFavourites } from "@/lib/fandom-store";
 import { cn } from "@/lib/utils";
+import { itemImages } from "@/data/images";
 
 export function CoverArt({
   item,
@@ -46,6 +47,16 @@ export function CoverArt({
       >
         {initials}
       </span>
+      {itemImages[item.id] && (
+        <img
+          src={itemImages[item.id]}
+          alt={item.title}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => (e.currentTarget.style.display = "none")}
+          className="absolute inset-0 size-full object-cover"
+        />
+      )}
     </div>
   );
 }
