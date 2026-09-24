@@ -47,6 +47,17 @@ export function CoverArt({
         {initials}
       </span>
     </div>
+      {itemImages[item.id] && (
+        <img
+          src={itemImages[item.id]}
+          alt={item.title}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => (e.currentTarget.style.display = "none")}
+          className="absolute inset-0 size-full object-cover"
+        />
+      )}
+    </div>
   );
 }
 
