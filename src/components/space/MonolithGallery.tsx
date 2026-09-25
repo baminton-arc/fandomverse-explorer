@@ -331,7 +331,7 @@ function Shards({ origin, color }: { origin: THREE.Vector3; color: string }) {
     const d = Math.min(raw, 0.05);
     const p = ref.current;
     if (!p) return;
-    const a = p.geometry.attributes.position as THREE.BufferAttribute;
+    const a = p.geometry.attributes['position'] as THREE.BufferAttribute;
     for (let i = 0; i < N * 3; i++) data.pos[i]! += data.vel[i]! * d;
     a.needsUpdate = true;
   });
