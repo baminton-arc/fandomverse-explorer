@@ -99,13 +99,11 @@ const painters: Record<string, Painter> = {
   "tv-shows": (g, t, c) => {
     g.fillStyle = "#101418";
     g.fillRect(0, 0, CW, CH);
-    const img = g.getImageData(0, 0, CW, CH);
-    for (let i = 0; i < img.data.length; i += 16) {
-      const v = Math.random() * 90;
-      img.data[i] = v; img.data[i + 1] = v; img.data[i + 2] = v;
-      img.data[i + 3] = 255;
+    for (let i = 0; i < 900; i++) {
+      const v = Math.floor(Math.random() * 110);
+      g.fillStyle = `rgb(${v},${v},${v})`;
+      g.fillRect(Math.random() * CW, Math.random() * CH, 4, 4);
     }
-    g.putImageData(img, 0, 0);
     const bars = ["#e0e0e0", "#e8e24a", "#4ae0e0", "#4ae04a", "#e04ae0", "#e04a4a", "#4a4ae0"];
     bars.forEach((b, i) => {
       g.fillStyle = b;
