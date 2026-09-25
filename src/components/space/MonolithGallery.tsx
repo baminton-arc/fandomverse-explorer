@@ -4,6 +4,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, Html, Sparkles } from "@react-three/drei";
 import { useNavigate } from "@tanstack/react-router";
 import { categories, type Category } from "@/data/categories";
+import { itemsByCategory } from "@/data/items";
+import { itemImages } from "@/data/images";
 
 const SPACING = 4.2;
 const W = 2.6;
@@ -206,21 +208,29 @@ const painters: Record<string, Painter> = {
 
 function useLiveTexture(cat: Category) {
   const [tex] = React.useState(() => {
-    const cvs = document.createElement("canvas");
-    cvs.width = CW;
-    cvs.height = CH;
-    const t = new THREE.CanvasTexture(cvs);
+    const url = itemsByCategory(cat.slug).map((i) => itemImages[i.id]).find(Boolean);
+    const t = new THREE.Texture();
     t.colorSpace = THREE.SRGBColorSpace;
+    if (url) {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        t.image = img;
+        // cover-fit into the tall panel
+        const panel = (W - 0.12) / (H - 0.12);
+        const ratio = img.width / img.height;
+        if (ratio > panel) {
+          t.repeat.set(panel / ratio, 1);
+          t.offset.set((1 - panel / ratio) / 2, 0);
+        } else {
+          t.repeat.set(1, ratio / panel);
+          t.offset.set(0, (1 - ratio / panel) / 2);
+        }
+        t.needsUpdate = true;
+      };
+      img.src = url;
+    }
     return t;
-  });
-  const acc = React.useRef(0);
-  useFrame((s, d) => {
-    acc.current += d;
-    if (acc.current < 1 / 24) return; // ~24fps is plenty for a window
-    acc.current = 0;
-    const g = (tex.image as HTMLCanvasElement).getContext("2d")!;
-    painters[cat.slug]?.(g, s.clock.elapsedTime, cat.color);
-    tex.needsUpdate = true;
   });
   return tex;
 }
@@ -281,7 +291,7 @@ function Monolith({
     >
       <mesh position={[0, 0, -0.02]}>
         <planeGeometry args={[W - 0.12, H - 0.12]} />
-        <meshBasicMaterial ref={screen} map={tex} transparent toneMapped={false} />
+        <meshBasicMaterial ref={screen} map={tex} color="#b8b3c8" transparent opacity={0.6} toneMapped={false} />
       </mesh>
       <mesh>
         <boxGeometry args={[W, H, 0.18]} />
