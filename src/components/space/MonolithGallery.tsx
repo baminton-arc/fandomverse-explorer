@@ -28,7 +28,7 @@ const painters: Record<string, Painter> = {
     g.arc(170, 170, 50, 0, Math.PI * 2);
     g.fill();
     for (let layer = 0; layer < 3; layer++) {
-      g.fillStyle = ["#6b3a6e", "#4a2552", "#2a1433"][layer];
+      g.fillStyle = ["#6b3a6e", "#4a2552", "#2a1433"][layer]!;
       const off = (t * (10 + layer * 18)) % 60;
       for (let x = -60; x < CW + 60; x += 30) {
         const h = 120 + ((x * 37 + layer * 91) % 110) + layer * 60;
@@ -102,7 +102,7 @@ const painters: Record<string, Painter> = {
     const img = g.getImageData(0, 0, CW, CH);
     for (let i = 0; i < img.data.length; i += 16) {
       const v = Math.random() * 90;
-      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i] = v; img.data[i + 1] = v; img.data[i + 2] = v;
       img.data[i + 3] = 255;
     }
     g.putImageData(img, 0, 0);
@@ -126,7 +126,7 @@ const painters: Record<string, Painter> = {
       const a = Math.sin(t * 1.3 + i * 1.7) * 0.6;
       const x0 = 30 + i * 65;
       const gr = g.createLinearGradient(x0, 0, x0 + Math.sin(a) * 300, CH);
-      gr.addColorStop(0, cols[i]);
+      gr.addColorStop(0, cols[i]!);
       gr.addColorStop(1, "transparent");
       g.fillStyle = gr;
       g.globalAlpha = 0.55;
@@ -332,7 +332,7 @@ function Shards({ origin, color }: { origin: THREE.Vector3; color: string }) {
     const p = ref.current;
     if (!p) return;
     const a = p.geometry.attributes.position as THREE.BufferAttribute;
-    for (let i = 0; i < N * 3; i++) data.pos[i] += data.vel[i] * d;
+    for (let i = 0; i < N * 3; i++) data.pos[i]! += data.vel[i]! * d;
     a.needsUpdate = true;
   });
   return (
@@ -389,7 +389,7 @@ export default function MonolithGallery({ onTransition }: { onTransition?: (colo
 
   const pick = (i: number, pos: THREE.Vector3) => {
     if (drag.current && drag.current.moved > 6) return;
-    const cat = categories[i];
+    const cat = categories[i]!;
     setSelected(i);
     setFlyTo(pos.clone());
     setTimeout(() => onTransition?.(cat.color), 750);
@@ -443,7 +443,7 @@ export default function MonolithGallery({ onTransition }: { onTransition?: (colo
         {categories.map((c, i) => (
           <Monolith key={c.slug} cat={c} index={i} scroll={scroll} selected={selected} onPick={pick} />
         ))}
-        {selected !== null && flyTo && <Shards origin={flyTo} color={categories[selected].color} />}
+        {selected !== null && flyTo && <Shards origin={flyTo} color={categories[selected]!.color} />}
         <Rig scroll={scroll} velocity={velocity} flyTo={flyTo} />
       </Canvas>
     </div>
