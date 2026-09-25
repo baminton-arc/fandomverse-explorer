@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Lightformer, Text, Sparkles } from "@react-three/drei";
+import { Environment, Lightformer, Html, Sparkles } from "@react-three/drei";
 import { useNavigate } from "@tanstack/react-router";
 import { categories, type Category } from "@/data/categories";
 
@@ -303,9 +303,9 @@ function Monolith({
         <circleGeometry args={[1.6, 48]} />
         <meshBasicMaterial color={cat.color} transparent opacity={hover ? 0.35 : 0.15} />
       </mesh>
-      <Text position={[0, -H / 2 - 0.8, 0.2]} fontSize={0.34} letterSpacing={0.18} color="#f2efff" anchorX="center">
-        {cat.name.toUpperCase()}
-      </Text>
+      <Html center position={[0, -H / 2 - 0.8, 0.2]} distanceFactor={10} style={{ pointerEvents: "none" }}>
+        <div className="font-display text-sm font-bold tracking-[0.3em] whitespace-nowrap text-foreground uppercase">{cat.name}</div>
+      </Html>
     </group>
   );
 }
