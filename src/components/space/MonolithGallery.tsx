@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Lightformer, Text, Sparkles } from "@react-three/drei";
+import { Environment, Lightformer, Html, Sparkles } from "@react-three/drei";
 import { useNavigate } from "@tanstack/react-router";
 import { categories, type Category } from "@/data/categories";
 
@@ -28,7 +28,7 @@ const painters: Record<string, Painter> = {
     g.arc(170, 170, 50, 0, Math.PI * 2);
     g.fill();
     for (let layer = 0; layer < 3; layer++) {
-      g.fillStyle = ["#6b3a6e", "#4a2552", "#2a1433"][layer];
+      g.fillStyle = ["#6b3a6e", "#4a2552", "#2a1433"][layer]!;
       const off = (t * (10 + layer * 18)) % 60;
       for (let x = -60; x < CW + 60; x += 30) {
         const h = 120 + ((x * 37 + layer * 91) % 110) + layer * 60;
@@ -99,13 +99,11 @@ const painters: Record<string, Painter> = {
   "tv-shows": (g, t, c) => {
     g.fillStyle = "#101418";
     g.fillRect(0, 0, CW, CH);
-    const img = g.getImageData(0, 0, CW, CH);
-    for (let i = 0; i < img.data.length; i += 16) {
-      const v = Math.random() * 90;
-      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
-      img.data[i + 3] = 255;
+    for (let i = 0; i < 900; i++) {
+      const v = Math.floor(Math.random() * 110);
+      g.fillStyle = `rgb(${v},${v},${v})`;
+      g.fillRect(Math.random() * CW, Math.random() * CH, 4, 4);
     }
-    g.putImageData(img, 0, 0);
     const bars = ["#e0e0e0", "#e8e24a", "#4ae0e0", "#4ae04a", "#e04ae0", "#e04a4a", "#4a4ae0"];
     bars.forEach((b, i) => {
       g.fillStyle = b;
@@ -126,7 +124,7 @@ const painters: Record<string, Painter> = {
       const a = Math.sin(t * 1.3 + i * 1.7) * 0.6;
       const x0 = 30 + i * 65;
       const gr = g.createLinearGradient(x0, 0, x0 + Math.sin(a) * 300, CH);
-      gr.addColorStop(0, cols[i]);
+      gr.addColorStop(0, cols[i]!);
       gr.addColorStop(1, "transparent");
       g.fillStyle = gr;
       g.globalAlpha = 0.55;
@@ -303,9 +301,9 @@ function Monolith({
         <circleGeometry args={[1.6, 48]} />
         <meshBasicMaterial color={cat.color} transparent opacity={hover ? 0.35 : 0.15} />
       </mesh>
-      <Text position={[0, -H / 2 - 0.8, 0.2]} fontSize={0.34} letterSpacing={0.18} color="#f2efff" anchorX="center">
-        {cat.name.toUpperCase()}
-      </Text>
+      <Html center position={[0, -H / 2 - 0.8, 0.2]} distanceFactor={10} style={{ pointerEvents: "none" }}>
+        <div className="font-display text-sm font-bold tracking-[0.3em] whitespace-nowrap text-foreground uppercase">{cat.name}</div>
+      </Html>
     </group>
   );
 }
@@ -331,8 +329,8 @@ function Shards({ origin, color }: { origin: THREE.Vector3; color: string }) {
     const d = Math.min(raw, 0.05);
     const p = ref.current;
     if (!p) return;
-    const a = p.geometry.attributes.position as THREE.BufferAttribute;
-    for (let i = 0; i < N * 3; i++) data.pos[i] += data.vel[i] * d;
+    const a = p.geometry.attributes['position'] as THREE.BufferAttribute;
+    for (let i = 0; i < N * 3; i++) data.pos[i]! += data.vel[i]! * d;
     a.needsUpdate = true;
   });
   return (
@@ -389,7 +387,7 @@ export default function MonolithGallery({ onTransition }: { onTransition?: (colo
 
   const pick = (i: number, pos: THREE.Vector3) => {
     if (drag.current && drag.current.moved > 6) return;
-    const cat = categories[i];
+    const cat = categories[i]!;
     setSelected(i);
     setFlyTo(pos.clone());
     setTimeout(() => onTransition?.(cat.color), 750);
@@ -443,7 +441,7 @@ export default function MonolithGallery({ onTransition }: { onTransition?: (colo
         {categories.map((c, i) => (
           <Monolith key={c.slug} cat={c} index={i} scroll={scroll} selected={selected} onPick={pick} />
         ))}
-        {selected !== null && flyTo && <Shards origin={flyTo} color={categories[selected].color} />}
+        {selected !== null && flyTo && <Shards origin={flyTo} color={categories[selected]!.color} />}
         <Rig scroll={scroll} velocity={velocity} flyTo={flyTo} />
       </Canvas>
     </div>

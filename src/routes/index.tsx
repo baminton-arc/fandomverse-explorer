@@ -6,22 +6,24 @@ import { categories } from "@/data/categories";
 import { trendingItems } from "@/data/items";
 import { ItemCard } from "@/components/ItemCard";
 
-const SolarSystem = React.lazy(() => import("@/components/space/SolarSystem"));
+const MonolithGallery = React.lazy(() => import("@/components/space/MonolithGallery"));
+import { AnimatePresence } from "motion/react";
+import { AmbientWidgets } from "@/components/space/AmbientWidgets";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FandomVerse — Explore fandoms as a 3D universe" },
+      { title: "FandomVerse — A 3D dimensional fandom gallery" },
       {
         name: "description",
         content:
-          "Spin an interactive solar system of seven fandom worlds: anime, gaming, movies, TV shows, K-pop, comics and manga.",
+          "Glide through a 3D gallery of seven living glass monoliths: anime, gaming, movies, TV shows, K-pop, comics and manga.",
       },
-      { property: "og:title", content: "FandomVerse — Explore fandoms as a 3D universe" },
+      { property: "og:title", content: "FandomVerse — A 3D dimensional fandom gallery" },
       {
         property: "og:description",
         content:
-          "Spin an interactive solar system of seven fandom worlds and save the ones you love.",
+          "Glide through seven living glass monoliths and save the ones you love.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,32 +37,47 @@ function SceneFallback() {
     <div className="starfield grid h-full w-full place-items-center">
       <div className="flex flex-col items-center gap-3 text-muted-foreground">
         <div className="size-14 animate-spin rounded-full border-2 border-border border-t-primary" />
-        <p className="text-sm">Charting the universe…</p>
+        <p className="text-sm">Raising the monoliths…</p>
       </div>
     </div>
   );
 }
 
 function Index() {
+  const [wipe, setWipe] = React.useState<string | null>(null);
   return (
     <div>
       <section className="relative h-[calc(100vh-4rem)] min-h-[560px] w-full overflow-hidden">
         <div className="absolute inset-0">
           <ClientOnly fallback={<SceneFallback />}>
             <React.Suspense fallback={<SceneFallback />}>
-              <SolarSystem />
+              <MonolithGallery onTransition={setWipe} />
             </React.Suspense>
           </ClientOnly>
         </div>
+        <AmbientWidgets />
+        <AnimatePresence>
+          {wipe && (
+            <motion.div
+              key="wipe"
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1.4 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.55, ease: "easeIn" }}
+              className="pointer-events-none fixed inset-0 z-50"
+              style={{ background: `radial-gradient(circle, ${wipe} 0%, ${wipe}cc 35%, var(--background) 75%)` }}
+            />
+          )}
+        </AnimatePresence>
 
-        <div className="pointer-events-none absolute inset-x-0 top-8 z-10 px-6 text-center">
+        <div className="pointer-events-none absolute inset-x-0 top-28 z-10 px-6 text-center sm:top-8">
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="text-glow font-display text-4xl font-bold sm:text-6xl"
           >
-            Every fandom, one orbit away
+            Step through the glass
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -68,13 +85,13 @@ function Index() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base"
           >
-            Drag to spin the system, scroll to zoom, and click a planet to enter its world.
+            Drag or scroll through seven living monoliths — click one to fly inside its world.
           </motion.p>
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-6 z-10 flex flex-col items-center gap-3 px-6">
           <span className="glass-panel flex items-center gap-2 rounded-full px-4 py-2 text-xs text-muted-foreground">
-            <MousePointerClick className="size-3.5" /> Drag · scroll · click a planet
+            <MousePointerClick className="size-3.5" /> Drag · scroll · click a monolith
           </span>
           <div className="pointer-events-auto flex flex-wrap justify-center gap-2">
             {categories.map((c) => (
