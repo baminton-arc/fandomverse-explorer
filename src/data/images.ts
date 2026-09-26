@@ -62,5 +62,7 @@ export const itemImages: Record<string, string> = {
   "blame": "https://upload.wikimedia.org/wikipedia/en/e/ef/Blame%21_manga_vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "death-note": "https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "witch-hat-atelier": "https://upload.wikimedia.org/wikipedia/en/c/ca/Witch_Hat_Atelier_vol1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-  "dungeon-meshi": "https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  "dungeon-meshi": "https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "newjeans": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/NewJeans_2023_MelonMusicAwards_composite.jpg/330px-NewJeans_2023_MelonMusicAwards_composite.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "batman-year-one": "https://upload.wikimedia.org/wikipedia/en/b/b1/Batman_vol._1-404_%28January_1987%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
 };
