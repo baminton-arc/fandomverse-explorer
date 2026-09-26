@@ -121,7 +121,7 @@ function ContactPage() {
             >
               <iframe
                 title="FandomVerse studio location"
-                src="https://www.google.com/maps?q=Shibuya,Tokyo,Japan&output=embed"
+                src="https://www.google.com/maps?q=25.2541944,51.5429354(Aptech%20Qatar)&z=16&output=embed"
                 className="h-[340px] w-full border-0 grayscale-[35%]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -132,14 +132,11 @@ function ContactPage() {
           <div className="mt-8 space-y-4 text-sm">
             <p className="flex items-start gap-3">
               <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
-              <span className="text-muted-foreground">
-                Studio address is a placeholder (Shibuya, Tokyo) — send us the real one and we'll
-                swap it in.
-              </span>
+              <span className="text-muted-foreground">Doha, Qatar</span>
             </p>
             <p className="flex items-center gap-3">
               <Mail className="size-4 shrink-0 text-accent" />
-              <span className="text-muted-foreground">hello@fandomverse.example</span>
+              <span className="text-muted-foreground">codebusterssss@gmail.com</span>
             </p>
             <p className="flex items-center gap-3">
               <MessageSquare className="size-4 shrink-0 text-accent" />
