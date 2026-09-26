@@ -67,5 +67,7 @@ export const itemImages: Record<string, string> = {
   "batman-year-one": "https://upload.wikimedia.org/wikipedia/en/b/b1/Batman_vol._1-404_%28January_1987%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "twin-peaks": "https://is1-ssl.mzstatic.com/image/thumb/Video1/v4/c2/27/21/c22721d5-55be-dcc8-96e1-af7cf1f6a674/mzl.doefzpnp.lsr/600x600bb.jpg",
   "fullmetal-alchemist": "https://upload.wikimedia.org/wikipedia/en/9/9d/Fullmetal123.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-  "the-last-of-us": "https://upload.wikimedia.org/wikipedia/en/3/3e/The_Last_of_Us_season_1_Blu-ray.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  "the-last-of-us": "https://upload.wikimedia.org/wikipedia/en/3/3e/The_Last_of_Us_season_1_Blu-ray.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "arcane": "/__l5e/assets-v1/825ec2c7-7bb7-49d9-a879-69eb83a39f61/arcane.png",
+  "severance": "/__l5e/assets-v1/d7278a84-e347-4899-ba91-5db8e8fa0ece/severance.png"
 };
