@@ -8,15 +8,18 @@ export function AmbientWidgets() {
   React.useEffect(() => {
     setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 1000);
-    const key = "fandomverse.visits";
-    const visits = Number(localStorage.getItem(key) ?? 0) + 1;
-    localStorage.setItem(key, String(visits));
-    const base = 128_400 + visits;
-    setVisitors(base);
-    const v = setInterval(() => setVisitors((n) => (n ?? base) + Math.floor(Math.random() * 3)), 4000);
+    // Counts each new visitor once: a reload (or return visit) from the same browser never adds to it.
+    const seenKey = "fandomverse.visitor-counted";
+    const countKey = "fandomverse.visitor-count";
+    let count = Number(localStorage.getItem(countKey) ?? 0);
+    if (!localStorage.getItem(seenKey)) {
+      count += 1;
+      localStorage.setItem(seenKey, "1");
+      localStorage.setItem(countKey, String(count));
+    }
+    setVisitors(count);
     return () => {
       clearInterval(t);
-      clearInterval(v);
     };
   }, []);
 
@@ -41,7 +44,7 @@ export function AmbientWidgets() {
           <Users className="size-3" /> Visitors
         </div>
         <div className="mt-1 font-display text-2xl font-semibold tabular-nums">
-          {visitors ? visitors.toLocaleString() : "—"}
+          {visitors !== null ? visitors.toLocaleString() : "—"}
         </div>
         <div className="flex items-center justify-end gap-1.5 text-xs text-muted-foreground">
           <span className="size-1.5 animate-pulse rounded-full bg-primary" /> live

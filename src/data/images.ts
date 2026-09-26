@@ -1,4 +1,4 @@
-// Cover pictures sourced from Wikipedia/Wikimedia.
+// Cover pictures sourced from Wikipedia/Wikimedia and Apple TV.
 export const itemImages: Record<string, string> = {
   "attack-on-titan": "https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "steins-gate": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steins%3BGate_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -62,5 +62,10 @@ export const itemImages: Record<string, string> = {
   "blame": "https://upload.wikimedia.org/wikipedia/en/e/ef/Blame%21_manga_vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "death-note": "https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "witch-hat-atelier": "https://upload.wikimedia.org/wikipedia/en/c/ca/Witch_Hat_Atelier_vol1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-  "dungeon-meshi": "https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  "dungeon-meshi": "https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "newjeans": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/NewJeans_2023_MelonMusicAwards_composite.jpg/330px-NewJeans_2023_MelonMusicAwards_composite.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "batman-year-one": "https://upload.wikimedia.org/wikipedia/en/b/b1/Batman_vol._1-404_%28January_1987%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "twin-peaks": "https://is1-ssl.mzstatic.com/image/thumb/Video1/v4/c2/27/21/c22721d5-55be-dcc8-96e1-af7cf1f6a674/mzl.doefzpnp.lsr/600x600bb.jpg",
+  "fullmetal-alchemist": "https://upload.wikimedia.org/wikipedia/en/9/9d/Fullmetal123.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "the-last-of-us": "https://upload.wikimedia.org/wikipedia/en/3/3e/The_Last_of_Us_season_1_Blu-ray.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
 };
