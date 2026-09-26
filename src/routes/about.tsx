@@ -25,10 +25,10 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Aya Fujimoto", role: "Design & 3D", bio: "Spent a decade making interfaces move and now makes planets orbit." },
-  { name: "Marco Silva", role: "Engineering", bio: "Writes the render loop, argues about easing curves, plays too much Elden Ring." },
-  { name: "Dana Okafor", role: "Curation", bio: "Reads 200 volumes a year and decides what earns a place in each orbit." },
-  { name: "Ji-woo Han", role: "Community", bio: "Runs the listening parties and keeps the K-pop shelf honest." },
+  { name: "John Cepe", role: "Design & 3D", bio: "Spent a decade making interfaces move and now makes planets orbit." },
+  { name: "Hosam Mohamed", role: "Engineering", bio: "Writes the render loop, argues about easing curves, plays too much Elden Ring." },
+  { name: "Abdulrahman Asif", role: "Curation", bio: "Reads 200 volumes a year and decides what earns a place in each orbit." },
+  { name: "James Estilles", role: "Community", bio: "Runs the listening parties and keeps the K-pop shelf honest." },
 ];
 
 function AboutPage() {
