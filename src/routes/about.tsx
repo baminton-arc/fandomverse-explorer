@@ -25,10 +25,10 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "John Cepe", role: "Design & 3D", bio: "Spent a decade making interfaces move and now makes planets orbit." },
-  { name: "Hosam Mohamed", role: "Engineering", bio: "Writes the render loop, argues about easing curves, plays too much Elden Ring." },
-  { name: "Abdulrahman Asif", role: "Curation", bio: "Reads 200 volumes a year and decides what earns a place in each orbit." },
-  { name: "James Estilles", role: "Community", bio: "Runs the listening parties and keeps the K-pop shelf honest." },
+  { name: "John Cepe", role: "Design & 3D" },
+  { name: "Hosam Mohamed", role: "Engineering" },
+  { name: "Abdulrahman Asif", role: "Curation" },
+  { name: "James Estilles", role: "Community" },
 ];
 
 function AboutPage() {
@@ -107,7 +107,6 @@ function AboutPage() {
               <div>
                 <h3 className="font-display text-base font-semibold">{m.name}</h3>
                 <p className="text-xs text-primary">{m.role}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{m.bio}</p>
               </div>
             </motion.div>
           ))}
