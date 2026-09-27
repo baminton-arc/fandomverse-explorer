@@ -25,6 +25,7 @@ export default defineConfig({
       : {
           prerender: { enabled: true, crawlLinks: true, routes: [base] },
         }),
-
+    router: { basepath: base },
   },
+
 });
