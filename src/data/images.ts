@@ -1,5 +1,9 @@
 // Cover pictures sourced from Wikipedia/Wikimedia and Apple TV.
+import arcanePoster from "@/assets/posters/arcane.png";
+import severancePoster from "@/assets/posters/severance.png";
+
 export const itemImages: Record<string, string> = {
+
   "attack-on-titan": "https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "steins-gate": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steins%3BGate_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "demon-slayer": "https://upload.wikimedia.org/wikipedia/en/0/09/Demon_Slayer_-_Kimetsu_no_Yaiba%2C_volume_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -68,6 +72,7 @@ export const itemImages: Record<string, string> = {
   "twin-peaks": "https://is1-ssl.mzstatic.com/image/thumb/Video1/v4/c2/27/21/c22721d5-55be-dcc8-96e1-af7cf1f6a674/mzl.doefzpnp.lsr/600x600bb.jpg",
   "fullmetal-alchemist": "https://upload.wikimedia.org/wikipedia/en/9/9d/Fullmetal123.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "the-last-of-us": "https://upload.wikimedia.org/wikipedia/en/3/3e/The_Last_of_Us_season_1_Blu-ray.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-  "arcane": "/__l5e/assets-v1/825ec2c7-7bb7-49d9-a879-69eb83a39f61/arcane.png",
-  "severance": "/__l5e/assets-v1/d7278a84-e347-4899-ba91-5db8e8fa0ece/severance.png"
+  "arcane": arcanePoster,
+  "severance": severancePoster
+
 };
