@@ -20,7 +20,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
     // Static hosting (GitHub Pages) has no server, so ship a client-rendered shell.
-    ...(base === "/" ? {} : { spa: { enabled: true }, prerender: { enabled: true } }),
-    router: { basepath: base },
+    ...(base === "/"
+      ? {}
+      : {
+          prerender: { enabled: true, crawlLinks: true, routes: [base] },
+        }),
+
   },
 });
