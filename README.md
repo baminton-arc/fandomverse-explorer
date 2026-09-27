@@ -1,4 +1,4 @@
-# FandomVerse Explorer
+ # FandomVerse Explorer
 
 1. Landing Page: The 3D Interactive Fandom Universe
 
