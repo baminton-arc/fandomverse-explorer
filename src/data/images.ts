@@ -1,5 +1,9 @@
 // Cover pictures sourced from Wikipedia/Wikimedia and Apple TV.
+import arcanePoster from "@/assets/posters/arcane.png";
+import severancePoster from "@/assets/posters/severance.png";
+
 export const itemImages: Record<string, string> = {
+
   "attack-on-titan": "https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "steins-gate": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steins%3BGate_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "demon-slayer": "https://upload.wikimedia.org/wikipedia/en/0/09/Demon_Slayer_-_Kimetsu_no_Yaiba%2C_volume_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
